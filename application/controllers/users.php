@@ -109,20 +109,14 @@ class Users extends MY_Controller {
         }
 
         if ($this->currentUser->is_super_user) {
-              if (array_key_exists("is_lecktor", $_POST)) {
-                      $this->user_model->update_user_base_authority($user,true);
-              }else{
-                      $this->user_model->update_user_base_authority($user,false);
-              }
+             $this->user_model->update_user_base_authority($user,array_key_exists("is_foreman", $_POST),array_key_exists("is_economic", $_POST));
         }
-
-
 
         $user=$this->user_model->get_user_by_id($user->user_id); 
         
         // user sessionjeinek frissitese
         if ($user->user_id > 0) {
-          $this->user_session_model->update_user_sessions($user);
+            $this->user_session_model->update_user_sessions($user);
         }
     }else{
       //NEM érkezett adat, új szerkesztés
