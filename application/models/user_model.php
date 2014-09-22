@@ -2,7 +2,7 @@
 class User_model  extends CI_Model
 {
 
-   private $database;
+  private $database;
 
   function __construct()
   {

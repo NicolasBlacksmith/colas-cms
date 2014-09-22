@@ -7,6 +7,25 @@
                         <a href="dashboard"><i class="fa fa-dashboard"></i><span class="sidebar-text">Dashboard</span></a>
                     </li>
 
+                    {if $currentUser->is_foreman || $currentUser->is_super_user}
+                        <li {if $currentMenu == MenuItems::DAILYREPORTS} class="current active hasSub" {else} class="hasSub" {/if}>
+                        <a href="#"><i class="fa fa-truck"></i><span class="sidebar-text">Napi jelentések</span><span class="fa arrow"></span></a>
+                        <ul class="submenu collapse" style="height: 0px;">
+
+                            <li {if $currentMenu == MenuItems::DAILYREPORTS AND $currentSubMenu==UserSubMenuItems::REPORTLIST} class="current"  {/if}>
+                                <a href="users/user_list"><span class="sidebar-text">Jelentések listája</span></a>
+                            </li>
+                            
+                            <li {if $currentMenu == MenuItems::DAILYREPORTS AND $currentSubMenu==UserSubMenuItems::NEWREPORT} class="current" {/if}>
+                                <a href="users/edit_user"><span class="sidebar-text">Új jelentés</span></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    {/if}
+
+
+
                     <!--ACCOUNT MANAGER -->
                     {if $currentUser->is_super_user}
                     <li {if $currentMenu == MenuItems::USERS} class="current active hasSub" {else} class="hasSub" {/if}>

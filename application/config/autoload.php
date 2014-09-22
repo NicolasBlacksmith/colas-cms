@@ -108,8 +108,14 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('model1', 'model2');
 |
 */
+$models[]="beans/user";
+$models[]="beans/company";
+$models[]="beans/unit";
+$models[]="beans/product";
+$models[]="beans/dailyreport";
 
-$autoload['model'] = array("beans/user");
+
+$autoload['model'] = $models;
 
 
 /* End of file autoload.php */

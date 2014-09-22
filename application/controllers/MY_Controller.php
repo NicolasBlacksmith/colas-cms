@@ -5,16 +5,20 @@ abstract class MenuItems
 {
     const DASHBOARD = 0;
     const USERS = 1;
-    const SITES = 2;
-    const ARTICLE_LIST = 3;
-    const PHOTOS = 4;
-    const PUBLISH =5;
+    const DAILYREPORTS = 2;
+  
 }
 
 abstract class UserSubMenuItems
 {
 	const USERLIST =0;
 	const NEWUSER =1;
+}
+
+abstract class DailyReportsbMenuItems
+{
+	const REPORTLIST =0;
+	const NEWREPORT =1;
 }
 
 

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-16 23:20:21
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-23 00:50:36
          compiled from "application/views/templates/menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:21431840365418a95a3217d5-17886385%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '38a984d5d9105ee4bcdd5df2d578293c114cf7c3' => 
     array (
       0 => 'application/views/templates/menu.tpl',
-      1 => 1410902418,
+      1 => 1411426231,
       2 => 'file',
     ),
   ),
@@ -35,6 +35,25 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <li <?php if ($_smarty_tpl->tpl_vars['currentMenu']->value==MenuItems::DASHBOARD) {?> class="current" <?php }?>>
                         <a href="dashboard"><i class="fa fa-dashboard"></i><span class="sidebar-text">Dashboard</span></a>
                     </li>
+
+                    <?php if ($_smarty_tpl->tpl_vars['currentUser']->value->is_foreman||$_smarty_tpl->tpl_vars['currentUser']->value->is_super_user) {?>
+                        <li <?php if ($_smarty_tpl->tpl_vars['currentMenu']->value==MenuItems::DAILYREPORTS) {?> class="current active hasSub" <?php } else { ?> class="hasSub" <?php }?>>
+                        <a href="#"><i class="fa fa-truck"></i><span class="sidebar-text">Napi jelentések</span><span class="fa arrow"></span></a>
+                        <ul class="submenu collapse" style="height: 0px;">
+
+                            <li <?php if ($_smarty_tpl->tpl_vars['currentMenu']->value==MenuItems::DAILYREPORTS&&$_smarty_tpl->tpl_vars['currentSubMenu']->value==UserSubMenuItems::REPORTLIST) {?> class="current"  <?php }?>>
+                                <a href="users/user_list"><span class="sidebar-text">Jelentések listája</span></a>
+                            </li>
+                            
+                            <li <?php if ($_smarty_tpl->tpl_vars['currentMenu']->value==MenuItems::DAILYREPORTS&&$_smarty_tpl->tpl_vars['currentSubMenu']->value==UserSubMenuItems::NEWREPORT) {?> class="current" <?php }?>>
+                                <a href="users/edit_user"><span class="sidebar-text">Új jelentés</span></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <?php }?>
+
+
 
                     <!--ACCOUNT MANAGER -->
                     <?php if ($_smarty_tpl->tpl_vars['currentUser']->value->is_super_user) {?>
