@@ -12,12 +12,12 @@
                         <a href="#"><i class="fa fa-truck"></i><span class="sidebar-text">Napi jelentések</span><span class="fa arrow"></span></a>
                         <ul class="submenu collapse" style="height: 0px;">
 
-                            <li {if $currentMenu == MenuItems::DAILYREPORTS AND $currentSubMenu==UserSubMenuItems::REPORTLIST} class="current"  {/if}>
-                                <a href="users/user_list"><span class="sidebar-text">Jelentések listája</span></a>
+                            <li {if $currentMenu == MenuItems::DAILYREPORTS AND $currentSubMenu==DailyReportsbMenuItems::REPORTLIST} class="current"  {/if}>
+                                <a href="reports/myreports"><span class="sidebar-text">Jelentések listája</span></a>
                             </li>
                             
-                            <li {if $currentMenu == MenuItems::DAILYREPORTS AND $currentSubMenu==UserSubMenuItems::NEWREPORT} class="current" {/if}>
-                                <a href="users/edit_user"><span class="sidebar-text">Új jelentés</span></a>
+                            <li {if $currentMenu == MenuItems::DAILYREPORTS AND $currentSubMenu==DailyReportsbMenuItems::NEWREPORT} class="current" {/if}>
+                                <a href="reports/newreport"><span class="sidebar-text">Új jelentés</span></a>
                             </li>
                         </ul>
                     </li>
