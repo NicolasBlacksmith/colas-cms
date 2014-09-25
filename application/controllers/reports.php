@@ -10,14 +10,23 @@ class Reports extends MY_Controller{
 		$this->controller_display_name="Jelentések";
 		$this->currentMenu=MenuItems::DAILYREPORTS;
 
+		$this->load->model("product_model");
+
 	}
 
 	public function newreport(){
 		$this->currentSubMenu=DailyReportsbMenuItems::NEWREPORT;
 		$this->parseTemplateStaticSections();
 
+		$company_list=$this->product_model->get_subcontractors_in_project(1);
+		$product_list=$this->product_model->get_products_in_project_by_company_id(1,2);
 
-        $this->template->parse_view('content','reports/report_new.tpl',array());
+		$send_to_template = array(
+			'company_list' => $company_list, 
+			'product_list' => $product_list
+			);
+
+        $this->template->parse_view('content','reports/report_new.tpl',$send_to_template);
         $this->template->render();
 	}
 
