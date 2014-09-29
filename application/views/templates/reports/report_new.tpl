@@ -1,11 +1,39 @@
 <script>
-
-function start_add_products(){
-
+{literal}
+function remove_product(item){
+	console.log(item);
+	$(item).parent().parent().parent().remove();
 
 }
 
+function add_new_product(){
+
+	var form_row=$('#product_container').children().last().clone();
+	$("#product_container").append(form_row);
+	console.log(form_row);
+}
+
+$(function() {
+    $("#company_selector").change(function(){
+				var company_id=$("#company_selector").val();
+				var project_id=$('input[name="project_id"]').val();
+				$.post("reports/get_products",{company_id:company_id, project_id:project_id},function(data){
+					if(data.success){
+						$("#product_container").html(data.template);
+						$("#plus_product").show();
+					}
+				},"json");
+	});
+
+	$("#plus_product").hide();
+});
+{/literal}
+
 </script>
+
+<form action="reports/save_report" method="post">
+<input type="hidden" name="project_id" value="{$project_id}">
+
 
 <div class="row">
 	
@@ -23,7 +51,7 @@ function start_add_products(){
 					                                        <label class="form-label"><strong>Szállítólevél azonosító</strong></label>
 					                                        <span class="tips"></span>
 					                                        <div class="controls">
-					                                            <input type="text" class="form-control">
+					                                            <input type="text" class="form-control" name="waybill_identifier">
 					                                        </div>
 					                                    </div>
 
@@ -33,9 +61,9 @@ function start_add_products(){
 					                                        <label class="form-label"><strong>Cég, Vállalkozó</strong></label>
 					                                        <span class="tips"></span>
 					                                        <div class="controls">
-																<select class="form-control" data-style="input-sm btn-default">
+																<select class="form-control" id="company_selector" data-style="input-sm btn-default" name="company">
 																	{foreach $company_list as $company}
-																            <option>{$company->companyName}</option>
+																        <option value="{$company->companyId}">{$company->companyName}</option>
 																    {/foreach}        
 														        </select>
 														    </div>  
@@ -43,11 +71,11 @@ function start_add_products(){
 													</div>
 
 													<div class="col-md-3 col-md-offset-3 col-sm-6 col-sm-offset-6 col-xs-8 col-sm-offset-4">
-														<div class="pull-right m-t-20">
+														<!-- div class="pull-right m-t-20">
 															<button type="button" class="btn btn-primary">
 																<i class="fa fa-plus"></i> Anyagok felvétele
 															</button>
-														</div>	
+														</div -->	
 													</div>	
 
 
@@ -56,48 +84,15 @@ function start_add_products(){
 										<div class="row border-top m-t-10 p-t-10">			
 
 											<div id="product_container" class="col-md-11 col-md-offset-1">
-												<div class="row">
-																<div class="col-md-6 col-sm-6 col-xs-4">
-																	<div class="form-group">
-								                                        <label class="form-label"><strong>Termék, anyag</strong></label>
-								                                        <span class="tips"></span>
-								                                        <div class="controls">
-																				<select class="form-control" data-style="input-sm btn-default">
-																					{foreach $product_list as $product}
-																				            <option>{$product->productName}</option>
-																				    {/foreach}        
-																		        </select>
-																		</div>
-																	</div>	        
-																</div>	
-																<div class="col-md-5 col-sm-5 col-xs-4">
-																	<div class="form-group">
-								                                        <label class="form-label"><strong>Mennyiség</strong> </label>
-								                                        <span class="tips"></span>
-								                                        <div class="controls">
-								                                            <input type="text" class="form-control"> 
-								                                        </div>
-								                                    </div>
-																</div>	
-
-																<div class="col-md-1 col-sm-1 col-xs-2 p-t-20">
-																	<div class="pull-right">
-																		<button type="button" class="btn btn-sm btn-danger">
-																			<i class="fa fa-minus"></i> 
-																		</button>
-																	</div>	
-
-																</div>	
-
-												</div>
-												<div class="row">
+													
+											</div>
+											<div id="plus_product" class="col-md-4 col-md-offset-8">
 														<div class="pull-right m-t-20">
-															<button type="button" class="btn btn-sm btn-primary">
+															<button type="button" class="btn btn-sm btn-primary" onClick="javascript:add_new_product();">
 																<i class="fa fa-plus"></i> 
 															</button>
 														</div>
-												</div>	
-											</div>
+												</div>
 
 			                            </div>
 <!-- MENTÉS -->
@@ -109,6 +104,6 @@ function start_add_products(){
 
                         </div>
             </div>                	
-
-
 </div>
+
+</form>
