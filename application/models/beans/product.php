@@ -10,11 +10,13 @@ class Product
 	public $productId;
 	public $productName;
 	public $unit;
+	public $quantity;
 
 	function __construct()
 	{
 		$this->productName="Default product";
 		$this->productId=0;
+		$this->quantity=0;
 
 		$this->unit = new Unit();
 	}
@@ -27,7 +29,6 @@ class Product
 		$this->unit=new Unit();
 		$this->unit->unitId=$db_object->unit_id;
 		$this->unit->unit=$db_object->unit;
-
 
 	}	
 }

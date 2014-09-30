@@ -21,12 +21,22 @@ $(function() {
 					if(data.success){
 						$("#product_container").html(data.template);
 						$("#plus_product").show();
+						$('.product_select').selectpicker();
+						$('.product_select').change(function(){
+							console.log($(this).parent().parent().parent().parent().find(".unit_label").append("db"));
+						})
 					}
 				},"json");
 	});
 
 	$("#plus_product").hide();
 });
+
+function write_unit_to_label(item){
+	
+}
+
+
 {/literal}
 
 </script>

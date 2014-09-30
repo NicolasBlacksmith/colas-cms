@@ -1,3 +1,11 @@
+<style>
+{literal}
+    #DataTables_Table_0_filter{
+        float: right;
+    }
+{/literal}
+</style>
+
 <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">

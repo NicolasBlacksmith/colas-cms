@@ -53,6 +53,27 @@ class Product_model extends CI_Model{
     return $productList;
   }
 
+  public function insert_daily_report(DailyReport $dailyReport){
+    $this->db->insert("daily_reports",array(
+          'project_id' => $dailyReport->projectId,
+          'user_id' => $dailyReport->user->user_id,
+          'created_time'=> $dailyReport->createdTime,
+          'debit_day_time' => $dailyReport->debitDayTime,
+          'waybill_identifier' => $dailyReport->wayBillIdentifier
+        ));
+
+    return $this->db->insert_id();
+  }
+
+  public function insert_daily_report_product(DailyReport $dailyReport, Product $product){
+    $this->db->insert("report_details", array(
+        "report_id" => $dailyReport->reportId,
+        "product_id" => $product->productId,
+        "quantity" => $product->quantity
+      ));
+
+  }
+
 
 
 

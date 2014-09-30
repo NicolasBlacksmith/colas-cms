@@ -4,9 +4,9 @@
                         <label class="form-label"><strong>Termék, anyag</strong></label>
                         <span class="tips"></span>
                         <div class="controls">
-								<select class="form-control" data-style="input-sm btn-default" name="product[]">
+								<select class="form-control product_select" data-style="input-sm btn-default" name="product[]">
 									{foreach $product_list as $product}
-								            <option>{$product->productName}</option>
+								            <option data-subtext="{$product->unit->unit}" value="{$product->productId}">{$product->productName}</option>
 								    {/foreach}        
 						        </select>
 						</div>
@@ -14,7 +14,7 @@
 				</div>	
 				<div class="col-md-5 col-sm-5 col-xs-4">
 					<div class="form-group">
-                        <label class="form-label"><strong>Mennyiség</strong> </label>
+                        <label class="form-label unit_label"><strong>Mennyiség</strong> </label>
                         <span class="tips"></span>
                         <div class="controls">
                             <input type="text" class="form-control" name="quantity[]"> 

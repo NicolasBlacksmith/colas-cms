@@ -14,6 +14,10 @@ class Reports extends MY_Controller{
 
 	}
 
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*   NAPI JELENTÉSEK
+*/
 	public function newreport(){
 		$this->currentSubMenu=DailyReportsbMenuItems::NEWREPORT;
 		$this->parseTemplateStaticSections();
@@ -43,7 +47,37 @@ class Reports extends MY_Controller{
 		exit;
 	}
 
+	public function save_report(){
 
+		if (array_key_exists("project_id", $_POST) && array_key_exists("waybill_identifier", $_POST) && array_key_exists("quantity", $_POST) ) {
+			$dailyReport = new DailyReport();
+
+			$dailyReport->user=$this->currentUser;
+			$dailyReport->createdTime=time();
+			$dailyReport->debitDayTime=time();
+
+			$dailyReport->projectId=$_POST["project_id"];
+			$dailyReport->wayBillIdentifier=$_POST["waybill_identifier"];
+
+			$dailyReport->reportId=$this->product_model->insert_daily_report($dailyReport);
+
+			foreach ($_POST["product"] as $key => $value) {
+				$product = new Product();
+				$product->productId=$_POST["product"][$key];
+				$product->quantity=$_POST["quantity"][$key];
+
+				$this->product_model->insert_daily_report_product($dailyReport, $product );
+			}
+
+		}
+
+		redirect("reports/myreports");
+	}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*  JELENTÉSEK LISTÁJA
+*/
 	public function myreports(){
 		$this->currentSubMenu=DailyReportsbMenuItems::REPORTLIST;
 		$this->parseTemplateStaticSections();
