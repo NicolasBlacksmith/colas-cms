@@ -49,11 +49,17 @@ $active_group = 'default';
 $active_record = TRUE;
 
 
-
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'colas';
-$db['default']['password'] = 'colas';
-$db['default']['database'] = 'colas';
+if ($_SERVER["HTTP_HOST"]=="colascms.site11.com") {
+	$db['default']['hostname'] = 'mysql13.000webhost.com';
+	$db['default']['username'] = 'a7373467_cms';
+	$db['default']['password'] = 'colas-cms';
+	$db['default']['database'] = 'a7373467_cms';
+}else{
+	$db['default']['hostname'] = 'localhost';
+	$db['default']['username'] = 'colas';
+	$db['default']['password'] = 'colas';
+	$db['default']['database'] = 'colas';
+}
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

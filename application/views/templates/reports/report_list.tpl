@@ -26,7 +26,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        	
+                                            	{foreach $list as $dailyreport}
+                                                    <tr>
+                                                        <td>{$dailyreport->wayBillIdentifier}</td>
+                                                        <td>{$dailyreport->createdTime|zengo_date_long}</td>
+                                                        <td>{$dailyreport->user->full_name}</td>
+                                                        <td>{$dailyreport->company->companyName}</td>
+                                                        <td>{$dailyreport->getNumberOfItems()}</td>
+                                                    </tr>
+                                                {/foreach}
                                         </tbody>
                                     </table>
                                 </div>

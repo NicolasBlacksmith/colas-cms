@@ -25,6 +25,11 @@
                     {/if}
 
 
+                    {if $currentUser->is_super_user}
+                    <li {if $currentMenu == MenuItems::SUMMARY} class="current" {/if}>
+                        <a href="summary"><i class="fa fa-filter"></i><span class="sidebar-text">Összesítő</span></a>
+                    </li>
+                    {/if}
 
                     <!--ACCOUNT MANAGER -->
                     {if $currentUser->is_super_user}

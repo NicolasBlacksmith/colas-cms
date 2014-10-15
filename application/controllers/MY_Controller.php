@@ -6,6 +6,7 @@ abstract class MenuItems
     const DASHBOARD = 0;
     const USERS = 1;
     const DAILYREPORTS = 2;
+    const SUMMARY = 3;
   
 }
 

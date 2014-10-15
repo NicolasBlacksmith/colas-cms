@@ -82,7 +82,9 @@ class Reports extends MY_Controller{
 		$this->currentSubMenu=DailyReportsbMenuItems::REPORTLIST;
 		$this->parseTemplateStaticSections();
 
-        $this->template->parse_view('content','reports/report_list.tpl',array());
+		$report_list=$this->product_model->get_report_list_by_user($this->currentUser);
+
+        $this->template->parse_view('content','reports/report_list.tpl',array("list"=>$report_list));
         $this->template->render();
 	}
 

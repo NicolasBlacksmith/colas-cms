@@ -12,6 +12,9 @@ class Product
 	public $unit;
 	public $quantity;
 
+	public $unitPrice;
+	public $totalAmount;
+
 	function __construct()
 	{
 		$this->productName="Default product";
@@ -19,6 +22,10 @@ class Product
 		$this->quantity=0;
 
 		$this->unit = new Unit();
+
+		$this->unitPrice=0;
+		$this->totalAmount=0;
+
 	}
 
 
@@ -30,6 +37,24 @@ class Product
 		$this->unit->unitId=$db_object->unit_id;
 		$this->unit->unit=$db_object->unit;
 
+		if (property_exists($db_object, "quantity") ) {
+			$this->quantity=$db_object->quantity;
+		}
+
+		if (property_exists($db_object, "unit_price") ) {
+			$this->unitPrice=$db_object->unit_price;
+		}
+		if (property_exists($db_object, "total_amount") ) {
+			$this->totalAmount=$db_object->total_amount;
+		}
+
 	}	
+
+	public function getConsumptionRate(){
+		return $this->quantity/$this->totalAmount*100;
+	}
+
+
+
 }
 ?>
