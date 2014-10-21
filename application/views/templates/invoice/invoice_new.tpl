@@ -65,9 +65,18 @@
                     </div>
         <!-- SZÁLLÍTÓLEVELEK -->										
                     <div class="row border-top m-t-10 p-t-10">			
-
+                        <div class="col-md-8">
                                         
 
+                        </div>
+                        <div class="col-md-4 bd-l-dark">
+                            <div class=""></div>
+                            <h4>Szállító levelek</h4>
+                            <ul class="list-inline">
+                                <li class="list-group-item-text">SZL/20140321/210 - 2014.10.27</li>
+                            </ul>    
+                            
+                        </div>    
                    </div>
         <!-- MENTÉS -->
                     <div class="row border-top m-t-10 p-t-10">	

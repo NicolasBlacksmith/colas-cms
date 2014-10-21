@@ -23,6 +23,8 @@ class Invoice extends MY_Controller {
 			'project_id'   =>1
 			);
 
+        
+        
         $this->template->parse_view('content','invoice/invoice_new.tpl',$send_to_template);
         $this->template->render();
     }
