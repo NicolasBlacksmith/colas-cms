@@ -173,11 +173,36 @@ class Product_model extends CI_Model{
     }     
 
     return $report_list;
-
-
   }
 
+  public function get_reports_by_project_id_company_id($project_id,$company_id) {
+    $this->db->select("daily_reports.*");
+    $this->db->join("report_details", "report_details.product_id=products.id");
+    $this->db->join("products", "products.id=report_details.product_id");
+    $this->db->where("daily_reports.project_id",$project_id);
+    $this->db->where("products.subcontractor_id",$company_id);
+    $this->db->order_by("created_time");
+    
+    $query=$this->db->get("daily_reports");
 
+    $report_list=new ArrayObject();
+      
+    if( $query->num_rows()!=0 ){
+        foreach ($query->result() as $row)
+        {
+          $dailyReport=new DailyReport(); 
+
+          $dailyReport->set_attributes_by_db_object($row);
+          $dailyReport->user=$this->user_model->get_user_by_id($row->user_id);
+          $dailyReport->company=$this->get_report_company($dailyReport);
+          $dailyReport->items=$this->get_report_products($dailyReport,$project_id);
+
+          $report_list->append($dailyReport);
+        }
+    }     
+    return $report_list; 
+      
+  }
 
 
 }

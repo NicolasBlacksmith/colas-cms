@@ -18,7 +18,7 @@
 	
 	.mm-subclose::before
 	{ 
-	content: < !important;
+	content: "<" !important;
 	}
 	
 	.title_margin{

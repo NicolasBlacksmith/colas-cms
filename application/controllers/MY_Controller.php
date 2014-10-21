@@ -7,8 +7,15 @@ abstract class MenuItems
     const USERS = 1;
     const DAILYREPORTS = 2;
     const SUMMARY = 3;
+    const ECONOMIC = 4;
   
 }
+abstract class EconomicSubMenuItems
+{
+    const INVOICELIST = 0;
+    const NEWINVOICE =1;
+}
+
 
 abstract class UserSubMenuItems
 {

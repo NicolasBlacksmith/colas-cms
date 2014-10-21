@@ -8,28 +8,44 @@
                     </li>
 
                     {if $currentUser->is_foreman || $currentUser->is_super_user}
-                        <li {if $currentMenu == MenuItems::DAILYREPORTS} class="current active hasSub" {else} class="hasSub" {/if}>
-                        <a href="#"><i class="fa fa-truck"></i><span class="sidebar-text">Napi jelentések</span><span class="fa arrow"></span></a>
-                        <ul class="submenu collapse" style="height: 0px;">
+                    <li {if $currentMenu == MenuItems::DAILYREPORTS} class="current active hasSub" {else} class="hasSub" {/if}>
+                            <a href="#"><i class="fa fa-truck"></i><span class="sidebar-text">Szállítólevelek</span><span class="fa arrow"></span></a>
+                            <ul class="submenu collapse" style="height: 0px;">
 
-                            <li {if $currentMenu == MenuItems::DAILYREPORTS AND $currentSubMenu==DailyReportsbMenuItems::REPORTLIST} class="current"  {/if}>
-                                <a href="reports/myreports"><span class="sidebar-text">Jelentések listája</span></a>
-                            </li>
-                            
-                            <li {if $currentMenu == MenuItems::DAILYREPORTS AND $currentSubMenu==DailyReportsbMenuItems::NEWREPORT} class="current" {/if}>
-                                <a href="reports/newreport"><span class="sidebar-text">Új jelentés</span></a>
-                            </li>
-                        </ul>
+                                <li {if $currentMenu == MenuItems::DAILYREPORTS AND $currentSubMenu==DailyReportsbMenuItems::REPORTLIST} class="current"  {/if}>
+                                    <a href="reports/myreports"><span class="sidebar-text">Szállítólevelek listája</span></a>
+                                </li>
+
+                                <li {if $currentMenu == MenuItems::DAILYREPORTS AND $currentSubMenu==DailyReportsbMenuItems::NEWREPORT} class="current" {/if}>
+                                    <a href="reports/newreport"><span class="sidebar-text">Új szállítólevél</span></a>
+                                </li>
+                            </ul>
                     </li>
 
                     {/if}
 
+                    {if $currentUser->is_super_user || $currentUser->is_economic}
+                    <li {if $currentMenu == MenuItems::ECONOMIC} class="current active hasSub" {else} class="hasSub" {/if}>
+                            <a href="#"><i class="fa fa-money"></i><span class="sidebar-text">Számlák</span><span class="fa arrow"></span></a>
+                            <ul class="submenu collapse" style="height: 0px;">
 
+                                <li {if $currentMenu == MenuItems::ECONOMIC AND $currentSubMenu==EconomicSubMenuItems::INVOICELIST} class="current"  {/if}>
+                                    <a href="invoice/invoicelist"><span class="sidebar-text">Számlák listája</span></a>
+                                </li>
+
+                                <li {if $currentMenu == MenuItems::ECONOMIC AND $currentSubMenu==EconomicSubMenuItems::NEWINVOICE} class="current" {/if}>
+                                    <a href="invoice/newinvoice"><span class="sidebar-text">Új számla</span></a>
+                                </li>
+                            </ul>
+                    </li>
+                    {/if}
+                    
                     {if $currentUser->is_super_user}
                     <li {if $currentMenu == MenuItems::SUMMARY} class="current" {/if}>
                         <a href="summary"><i class="fa fa-filter"></i><span class="sidebar-text">Összesítő</span></a>
                     </li>
                     {/if}
+                    
 
                     <!--ACCOUNT MANAGER -->
                     {if $currentUser->is_super_user}

@@ -8,18 +8,19 @@ class Dashboard extends MY_Controller {
 
 		$this->controller_display_name="Dashboard";
 		$this->currentMenu=MenuItems::DASHBOARD;
-
-
-		
+                
 	}
-
+        
 
 	public function index()
 	{
 
 		
-		$this->parseTemplateStaticSections();
+	$this->parseTemplateStaticSections();
         $this->template->parse_view('content','dashboard/dashboard.tpl',array());
         $this->template->render();
-	}	
+        
+        }	
+        
+        
 }	

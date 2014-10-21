@@ -87,12 +87,4 @@ class Reports extends MY_Controller{
         $this->template->parse_view('content','reports/report_list.tpl',array("list"=>$report_list));
         $this->template->render();
 	}
-
-
-
-
-
-
-
-
 }
